@@ -22,7 +22,11 @@
       }
     }
   },
-  "projects": {},
+  "projects": {
+    "server": {
+      "tags": ["side:server"]
+    }
+  },
   "workspaceLayout": {
     "appsDir": "samples",
     "libsDir": "packages"
