@@ -3,18 +3,24 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
+import { WebNeekLogger } from './utils/webneek-logger';
 import { NestFactory } from '@nestjs/core';
-
-import { AppModule } from './app/app.module';
+import { WsAdapter } from '@nestjs/platform-ws';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: false,
+  });
+  app.useLogger(app.get(WebNeekLogger));
+  app.useWebSocketAdapter(new WsAdapter(app));
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+    WebNeekLogger.log('Listening at http://localhost:' + port + '/' + globalPrefix, 'App');
   });
 }
 
