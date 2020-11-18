@@ -23,21 +23,16 @@ export class AppComponent implements OnInit {
     const setMessage = (data: Object) => JSON.stringify(data);
     const getMessage = (data: MessageEvent) => JSON.parse(data.data);
     const onMessage = (data: MessageEvent) => {
-      const message = getMessage(data);
-      console.debug(message);
-      this.messages.next([...this.messages.value, message]);
-    };
 
+      const messages = [...this.messages.value, getMessage(data)];
+      this.messages.next(messages);
+    };
     const onOpen = () => {
-      console.log('Connected');
-      socket.send(
-        setMessage({
-          event: 'events',
-          data: 'test',
-        })
-      );
+
+      socket.send(setMessage({ event: 'events', data: 'test' }));
       socket.addEventListener('message', onMessage);
     };
+
     socket.addEventListener('open', onOpen);
   }
 }
