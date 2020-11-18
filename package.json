@@ -26,17 +26,23 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@nestjs/platform-socket.io": "^7.5.4",
+    "@nestjs/websockets": "^7.5.4",
+    "socket.io-redis": "^6.0.1"
+  },
   "devDependencies": {
-    "@nrwl/tao": "10.4.4",
     "@nrwl/cli": "10.4.4",
+    "@nrwl/nest": "^10.4.4",
+    "@nrwl/tao": "10.4.4",
     "@nrwl/workspace": "10.4.4",
     "@types/node": "~8.9.4",
+    "@types/socket.io": "^2.1.11",
     "dotenv": "6.2.0",
+    "eslint": "7.10.0",
+    "prettier": "2.1.2",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "eslint": "7.10.0",
-    "typescript": "~4.0.3",
-    "prettier": "2.1.2"
+    "typescript": "~4.0.3"
   }
 }
