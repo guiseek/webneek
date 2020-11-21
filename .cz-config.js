@@ -35,8 +35,15 @@ module.exports = {
   scopes: [
     { name: 'server', description: 'anything server specific' },
     { name: 'client', description: 'anything client specific' },
-    { name: 'test', description: 'anything test specific (e.g., jest, cypress)', },
-    { name: 'repo', description: 'anything related to managing the repo itself', },
+    { name: 'media', description: 'anything media specific' },
+    {
+      name: 'test',
+      description: 'anything test specific (e.g., jest, cypress)',
+    },
+    {
+      name: 'repo',
+      description: 'anything related to managing the repo itself',
+    },
     { name: 'misc', description: 'misc stuff' },
   ],
 
@@ -80,4 +87,4 @@ module.exports = {
   // breaklineChar: '|', // It is supported for fields body and footer.
   // footerPrefix : 'ISSUES CLOSED:'
   // askForBreakingChangeFirst : true, // default is false
-}
+};

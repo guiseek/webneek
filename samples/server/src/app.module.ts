@@ -4,6 +4,6 @@ import { WebNeekLogger } from './utils/webneek-logger';
 
 @Module({
   imports: [EventsModule],
-  providers: [WebNeekLogger]
+  providers: [WebNeekLogger],
 })
 export class AppModule {}

@@ -1,14 +1,19 @@
+import { WebAudioModule } from '@webneek/media';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { AudioComponent } from './audio/audio.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AudioComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    WebAudioModule,
+    RouterModule.forRoot([{ path: 'audio', component: AudioComponent }], {
+      initialNavigation: 'enabled',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

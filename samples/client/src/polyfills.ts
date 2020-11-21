@@ -60,3 +60,10 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+(window as any).MediaStreamTrackAudioSourceNode =
+  window.MediaStreamTrackAudioSourceNode || function () {};
+
+(window as any).AudioNode = window.AudioNode || function () {};
+
+(window as any).AudioContext =
+  window.AudioContext || (window as any).webkitAudioContext || function () {};

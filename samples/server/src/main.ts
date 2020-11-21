@@ -20,7 +20,10 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
-    WebNeekLogger.log('Listening at http://localhost:' + port + '/' + globalPrefix, 'App');
+    WebNeekLogger.log(
+      'Listening at http://localhost:' + port + '/' + globalPrefix,
+      'App'
+    );
   });
 }
 
