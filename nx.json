@@ -32,6 +32,9 @@
     "client-e2e": {
       "tags": [],
       "implicitDependencies": ["client"]
+    },
+    "media": {
+      "tags": []
     }
   },
   "workspaceLayout": {

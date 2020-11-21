@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@webneek/media": ["packages/media/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

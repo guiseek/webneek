@@ -1,0 +1,47 @@
+<p>audio works!</p>
+
+<div class="track">
+  <canvas #fallbackOzzy="AudioNode" #canvasOzzy wnAudioDestinationNode></canvas>
+  <audio
+    wnMediaElementAudioSourceNode
+    src="assets/ringtones/ringtone-ozzy_blue.mp3"
+    controls
+  >
+    <ng-container wnAnalyserNode (timeByte$)="onTimeDomain($event, canvasOzzy)">
+      <ng-container [wnOutput]="fallbackOzzy"></ng-container>
+    </ng-container>
+  </audio>
+</div>
+<hr />
+
+<div class="track">
+  <canvas
+    #fallbackCrazyTrain="AudioNode"
+    #canvasCrazyTrain
+    wnAudioDestinationNode
+  ></canvas>
+  <audio
+    wnMediaElementAudioSourceNode
+    src="assets/ringtones/ringtone-crazy_train.mp3"
+    loop
+    controls
+  >
+    <ng-container
+      wnAnalyserNode
+      (timeByte$)="onTimeDomain($event, canvasCrazyTrain)"
+    >
+      <ng-container [wnOutput]="fallbackCrazyTrain"></ng-container>
+    </ng-container>
+  </audio>
+</div>
+
+<hr />
+
+<div class="track">
+  <canvas #fallback="AudioNode" #canvas wnAudioDestinationNode></canvas>
+  <audio wnMediaElementAudioSourceNode src="assets/demo.mp3" loop controls>
+    <ng-container wnAnalyserNode (timeByte$)="onTimeDomain($event, canvas)">
+      <ng-container [wnOutput]="fallback"></ng-container>
+    </ng-container>
+  </audio>
+</div>
