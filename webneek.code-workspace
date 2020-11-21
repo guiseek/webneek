@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../webneek"
+		}
+	],
+	"settings": {
+    "workbench.colorCustomizations": {
+      "sideBar.background": "#111A20",
+      "editorRuler.foreground": "#111A20",
+      "editor.background": "#101e25",
+      "titleBar.border": "#111A20",
+      "titleBar.activeBackground": "#101e25",
+      "titleBar.activeForeground": "#82F9A1",
+      "statusBar.background": "#101e25",
+      "statusBar.foreground": "#82F9A1",
+      "activityBar.foreground": "#82F9A1",
+      "activityBarBadge.background": "#00000070",
+      "activityBarBadge.foreground": "#6dc083",
+      "activityBar.background": "#101e25",
+      "tab.activeBackground": "#101e25",
+      "tab.activeForeground": "#82F9A1",
+      "tab.inactiveBackground": "#162027",
+      "breadcrumb.background": "#101e25",
+      "editorGroupHeader.tabsBackground": "#162027",
+      "sideBarSectionHeader.background": "#162027",
+      "list.activeSelectionBackground": "#ffffff",
+      "list.inactiveSelectionBackground": "#101e25"
+    }
+  }
+}
