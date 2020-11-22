@@ -19,19 +19,17 @@ export class AppComponent implements OnInit {
   messages$ = this.messages.asObservable();
 
   ngOnInit() {
-    const socket = new WebSocket('ws://localhost:8080');
-
-    const setMessage = (data: Object) => JSON.stringify(data);
-    const getMessage = (data: MessageEvent) => JSON.parse(data.data);
-    const onMessage = (data: MessageEvent) => {
-      const messages = [...this.messages.value, getMessage(data)];
-      this.messages.next(messages);
-    };
-    const onOpen = () => {
-      socket.send(setMessage({ event: 'events', data: 'test' }));
-      socket.addEventListener('message', onMessage);
-    };
-
-    socket.addEventListener('open', onOpen);
+    //   const socket = new WebSocket('ws://localhost:8080');
+    //   const setMessage = (data: Object) => JSON.stringify(data);
+    //   const getMessage = (data: MessageEvent) => JSON.parse(data.data);
+    //   const onMessage = (data: MessageEvent) => {
+    //     const messages = [...this.messages.value, getMessage(data)];
+    //     this.messages.next(messages);
+    //   };
+    //   const onOpen = () => {
+    //     socket.send(setMessage({ event: 'events', data: 'test' }));
+    //     socket.addEventListener('message', onMessage);
+    //   };
+    //   socket.addEventListener('open', onOpen);
   }
 }

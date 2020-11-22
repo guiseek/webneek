@@ -36,6 +36,7 @@ module.exports = {
     { name: 'server', description: 'anything server specific' },
     { name: 'client', description: 'anything client specific' },
     { name: 'media', description: 'anything media specific' },
+    { name: 'data', description: 'anything data specific' },
     {
       name: 'test',
       description: 'anything test specific (e.g., jest, cypress)',
@@ -53,14 +54,14 @@ module.exports = {
   ticketNumberRegExp: '\\d{1,5}',
 
   // it needs to match the value for field type. Eg.: 'fix'
-  scopeOverrides: {
-    fix: [
-      { name: 'merge' },
-      { name: 'style' },
-      { name: 'e2eTest' },
-      { name: 'unitTest' },
-    ],
-  },
+  // scopeOverrides: {
+  //   fix: [
+  //     { name: 'merge' },
+  //     { name: 'style' },
+  //     { name: 'e2eTest' },
+  //     { name: 'unitTest' },
+  //   ],
+  // },
   // override the messages, defaults are as follows
   messages: {
     type: "Select the type of change that you're committing:",
