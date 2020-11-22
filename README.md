@@ -1,33 +1,73 @@
 # Webneek
 
+## Aplicações
+
+```sh
+samples
+├── client
+├── client-e2e
+└── server
+```
+
+## Bibliotecas
+
+```sh
+packages
+├── media
+├── rtc
+│   └── data
+└── server
+    └── core
+```
+
+## Gestão
+
+Temos alguns arquivos que devemos nos atentar, 3 principais e 2 secundários, onde sempre que trabalhamos na estrutura do repo, seja, criando, alterando ou removendo qualquer aplicação ou biblioteca, deve-se conferir se estão de acordo.
+
+```sh
+├── nx.json       # <- Nome do projeto e suas tags de controle #
+├── package.json  # <- Dependências externas de todos projetos #
+├── tsconfig.base.json # <- Dependências internas dos projetos #
+├── tslint.json   # <- Aqui é onde criamos as tags de controle #
+├── workspace.json # <- Principal, fica todas as configurações #
+```
+
+## Estrutura de comandos
+
+- `nx` (comando)
+  - `serve / build / test / lint / e2e / run / generate` (ações)
+  - `projeto` Ou `--projects projeto1, projeto2, projeto 3` (projetos)
+  - demais parâmetros que variam de acordo com a ação
+
+Para saber mais, acesse [este link para doc](https://nx.dev/latest/angular/cli/overview) do `nx cli`
+
+> _Não vale a pena extender muito, pois caso atualizem precisaríamos manter isso aqui._
+
+## Git
+
+Vamos simplificar as coisas e trabalhar somente com branch principal e branch feature.
+
+Sendo assim, a `main` seria nossa branch principal onde **não devem haver commits**, apenas _pull requests_, a branch feature que está abrindo pull request deve sempre estar atualizada com o que pode ter entrado na main enquanto foi desenvolvida a task, se necessário, utilize o `rebase` para isso. Depois listamos aqui de cola os principais comandos que serão usados.
+
+> _Em casos de pânico_
+>
+> Talvez este link: [Oh shit git.com](https://ohshitgit.com/) possa ajudar `;)`
+
+Tente manter os commits pequenos que resolvam poucas coisas, feature branches com objetivo bem definido e mensagem e cuidado com a mensagem do commit, ela deve explicar **o problema** resolvido e não **como** ele foi resolvido.
+
+Para comitar é só executar `./cmt`
+
+No code review, ao aceitar o pull request, **nunca** aceite clicando no botão só de merge, ele gera um _merge commit_ intermediário que dificulta a navegação futura, clique **sempre** no (rebase & merge) ou (squash & merge) caso seja necessário juntar ou remover um ou mais commits, conversamos melhor depois também, blz? nozes 👊
+
+---
+
+<br>
+
+---
+
 This project was generated using [Nx](https://nx.dev).
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
-
-## Adding capabilities to your workspace
-
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
-
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
-
-Below are our core plugins:
-
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+**Nx is a set of Extensible Dev Tools for Monorepos.**
 
 ## Generate an application
 
