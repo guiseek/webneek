@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@webneek/media": ["packages/media/src/index.ts"]
+      "@webneek/media": ["packages/media/src/index.ts"],
+      "@webneek/rtc-data": ["packages/rtc/data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/packages/audio',
     '<rootDir>/packages/ngsx/media',
     '<rootDir>/packages/media',
+    '<rootDir>/packages/rtc/data',
   ],
 };

@@ -35,6 +35,9 @@
     },
     "media": {
       "tags": []
+    },
+    "rtc-data": {
+      "tags": []
     }
   },
   "workspaceLayout": {
