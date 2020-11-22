@@ -38,6 +38,9 @@
     },
     "rtc-data": {
       "tags": []
+    },
+    "server-core": {
+      "tags": ["side:server"]
     }
   },
   "workspaceLayout": {

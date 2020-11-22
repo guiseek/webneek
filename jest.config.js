@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/packages/ngsx/media',
     '<rootDir>/packages/media',
     '<rootDir>/packages/rtc/data',
+    '<rootDir>/packages/server/core',
   ],
 };
