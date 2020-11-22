@@ -1,5 +1,30 @@
 <p>audio works!</p>
 
+<!-- <button (click)="goGoGo()">Go Go Go</button> -->
+
+<div>
+  <h3>Local</h3>
+  <video #localVideo [width]="320" playsinline autoplay muted></video>
+  <button #startButton (click)="start()">
+    play
+  </button>
+  <button #callButton (click)="call()">
+    ligar
+  </button>
+  <button #hangupButton (click)="hangup()">
+    finalizar
+  </button>
+  <!-- <audio #local controls src=""></audio> -->
+</div>
+
+<div>
+  <h3>Remoto</h3>
+  <video #remoteVideo playsinline autoplay></video>
+  <!-- <audio #remote controls src=""></audio> -->
+</div>
+
+
+
 <div class="track">
   <canvas #fallbackOzzy="AudioNode" #canvasOzzy wnAudioDestinationNode></canvas>
   <audio

@@ -10,7 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DataModule, WebSocketConfig } from './shared/data';
 
 const config: WebSocketConfig = {
-  url: 'http://localhost:3000',
+  // url: 'http://localhost:3000',
+  url: 'https://webneek-server.herokuapp.com',
   options: {
     // protocols
   },

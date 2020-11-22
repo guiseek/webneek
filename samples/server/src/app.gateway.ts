@@ -1,3 +1,4 @@
+import { WebNeekLogger } from './utils/webneek-logger';
 import {
   SubscribeMessage,
   WebSocketGateway,
@@ -16,13 +17,11 @@ export class AppGateway {
   @WebSocketServer()
   server: Server;
 
-  private logger: Logger = new Logger('EventsGateway');
+  private logger: WebNeekLogger = new WebNeekLogger('EventsGateway');
 
   handleConnection(client: Socket) {
     this.connectedClients = [...this.connectedClients, client.id];
-    this.logger.log(
-      `Client connected: ${client.id} - ${this.connectedClients.length} connected clients.`
-    );
+    this.logger.connected(client.id, this.connectedClients.length);
     this.server.emit(ActionTypes.ClientConnected, this.connectedClients);
     client.emit(ActionTypes.Data, this.data);
   }
@@ -31,9 +30,7 @@ export class AppGateway {
     this.connectedClients = this.connectedClients.filter(
       (connectedClient) => connectedClient !== client.id
     );
-    this.logger.log(
-      `Client disconnected: ${client.id} - ${this.connectedClients.length} connected clients.`
-    );
+    this.logger.disconnected(client.id, this.connectedClients.length);
     this.server.emit(ActionTypes.ClientConnected, this.connectedClients);
   }
 
