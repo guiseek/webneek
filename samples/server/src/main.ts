@@ -5,7 +5,7 @@
 
 import { WebNeekLogger } from './utils/webneek-logger';
 import { NestFactory } from '@nestjs/core';
-import { WsAdapter } from '@nestjs/platform-ws';
+// import { WsAdapter } from '@nestjs/platform-ws';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -13,7 +13,7 @@ async function bootstrap() {
     logger: false,
   });
   app.useLogger(app.get(WebNeekLogger));
-  app.useWebSocketAdapter(new WsAdapter(app));
+  // app.useWebSocketAdapter(new WsAdapter(app));
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
