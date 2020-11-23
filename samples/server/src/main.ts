@@ -1,4 +1,4 @@
-import { WebNeekLogger } from './utils/webneek-logger';
+import { WebneekLogger } from './utils/webneek-logger';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -8,7 +8,7 @@ async function bootstrap() {
     logger: false,
   });
   const config = app.get(ConfigService);
-  app.useLogger(app.get(WebNeekLogger));
+  app.useLogger(app.get(WebneekLogger));
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
@@ -17,7 +17,7 @@ async function bootstrap() {
   await app.listen(port, () => {
     const host = `http://localhost:${port}/${globalPrefix}`;
     const env = ` ${config.get('environment')} mode`;
-    WebNeekLogger.log(`Listening at ${host} on ${env} on`, 'Webneek Server');
+    WebneekLogger.log(`Listening at ${host} on ${env} on`, 'Webneek Server');
   });
 }
 

@@ -1,19 +1,19 @@
 <header class="flex">
-  <img
-    alt="Nx logo"
-    width="75"
-    src="https://nx.dev/assets/images/nx-logo-white.svg"
-  />
   <h1>Welcome to {{ title }}!</h1>
 </header>
 
-<pre *ngFor="let message of messages$ | async">
-  {{ message.event }}: {{ message.data }}
-</pre>
+<section>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/audio">Audio</a>
+    <a routerLink="/video">Video</a>
+    <a routerLink="/help">Helpdesk</a>
+  </nav>
 
-<nav>
-  <a routerLink="/audio">Audio</a>
-  <a routerLink="/video">Video</a>
-</nav>
+  <router-outlet></router-outlet>
 
-<router-outlet></router-outlet>
+</section>
+
+<footer>
+  <p>Welcome to {{ title }}!</p>
+</footer>

@@ -1,24 +1,34 @@
-import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
-
+// import { Inject } from '@angular/core';
 import * as io from 'socket.io-client';
+import { share } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { InjectionToken } from '@angular/core';
 
-import { RtcSocketConfig } from './rtc-socket.config';
+export interface WebSocketConfig {
+  url: string;
+  options?: any;
+}
 
-@Injectable({
-  providedIn: 'root',
-})
-export class RtcSocket {
+export function WebSocketFactory(config: WebSocketConfig) {
+  return new WebSocketFacade(config);
+}
+
+export const SOCKET_CONFIG_TOKEN = new InjectionToken<WebSocketConfig>(
+  '__SOCKET_IO_CONFIG__'
+);
+
+export class WebSocketFacade {
   subscribersCounter: Record<string, number> = {};
   eventObservables$: Record<string, Observable<any>> = {};
   ioSocket: any;
-  emptyConfig: RtcSocketConfig = {
+  emptyConfig: WebSocketConfig = {
     url: '',
     options: {},
   };
 
-  constructor(private config: RtcSocketConfig) {
+  constructor(private config: WebSocketConfig) {
+    console.log(config);
+
     if (config === undefined) {
       config = this.emptyConfig;
     }

@@ -1,55 +1,49 @@
-import { WebAudioModule } from '@webneek/media';
 import { BrowserModule } from '@angular/platform-browser';
-import { InjectionToken, NgModule } from '@angular/core';
+import { WebAudioModule } from '@webneek/media';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { AudioComponent } from './audio/audio.component';
 import { VideoComponent } from './video/video.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RtcSocket } from './video/rtc-socket';
-import { RtcSocketConfig } from './video/rtc-socket.config';
+import { DataModule, WebSocketConfig } from './shared/data';
+import { HelpdeskComponent } from './helpdesk/helpdesk.component';
+import { HomeComponent } from './home/home.component';
+import { BannerComponent } from './shared/components/banner/banner.component';
 
-/** Socket factory */
-export function SocketFactory(config: RtcSocketConfig) {
-  return new RtcSocket(config);
-}
-
-export const SOCKET_CONFIG_TOKEN = new InjectionToken<RtcSocketConfig>(
-  '__SOCKET_IO_CONFIG__'
-);
-
-const config: RtcSocketConfig = {
-  url: 'http://localhost:3333',
-  options: {
-    // protocols
-  },
+const config: WebSocketConfig = {
+  // url: 'http://localhost:3000',
+  url: 'https://webneek-server.herokuapp.com',
+  options: {},
 };
 
 @NgModule({
-  declarations: [AppComponent, AudioComponent, VideoComponent],
+  declarations: [
+    AppComponent,
+    AudioComponent,
+    VideoComponent,
+    HelpdeskComponent,
+    BannerComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     WebAudioModule,
     ReactiveFormsModule,
+    DataModule.forRoot(config),
     RouterModule.forRoot(
       [
+        { path: '', component: HomeComponent },
         { path: 'audio', component: AudioComponent },
         { path: 'video', component: VideoComponent },
+        { path: 'help', component: HelpdeskComponent },
+        // { path: '', redirectTo: 'help', pathMatch: 'full' }
       ],
       {
         initialNavigation: 'enabled',
       }
     ),
-  ],
-  providers: [
-    RtcSocket,
-    { provide: SOCKET_CONFIG_TOKEN, useValue: config },
-    {
-      provide: RtcSocket,
-      useFactory: SocketFactory,
-      deps: [SOCKET_CONFIG_TOKEN],
-    },
   ],
   bootstrap: [AppComponent],
 })

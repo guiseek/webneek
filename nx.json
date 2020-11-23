@@ -36,11 +36,11 @@
     "media": {
       "tags": []
     },
-    "rtc-data": {
-      "tags": []
-    },
     "server-core": {
       "tags": ["side:server"]
+    },
+    "state-store": {
+      "tags": []
     }
   },
   "workspaceLayout": {

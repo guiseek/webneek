@@ -1,10 +1,10 @@
 import { Observable, asyncScheduler } from 'rxjs';
 import { observeOn, filter, tap } from 'rxjs/operators';
-import { Action, ActionTypes } from '@webneek/rtc-data';
-import { RtcSocket } from '../rtc-socket';
+import { Action, ActionTypes } from '@nx-state/store';
+import { WebSocketFacade } from '../../shared/data';
 
 export const getPatchValueEffect = (
-  socket: RtcSocket,
+  socket: WebSocketFacade,
   actions: Observable<Action>
 ) => {
   // const webSocket = new WebSocket('ws:localhost:3333')

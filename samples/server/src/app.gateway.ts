@@ -1,11 +1,11 @@
+import { WebneekLogger } from './utils/webneek-logger';
 import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Logger } from '@nestjs/common';
-import { ActionTypes, FormData } from '@webneek/rtc-data';
+import { ActionTypes, FormData } from '@nx-state/store';
 
 @WebSocketGateway()
 export class AppGateway {
@@ -16,13 +16,11 @@ export class AppGateway {
   @WebSocketServer()
   server: Server;
 
-  private logger: Logger = new Logger('EventsGateway');
+  private logger: WebneekLogger = new WebneekLogger('EventsGateway');
 
   handleConnection(client: Socket) {
     this.connectedClients = [...this.connectedClients, client.id];
-    this.logger.log(
-      `Client connected: ${client.id} - ${this.connectedClients.length} connected clients.`
-    );
+    this.logger.connected(client.id, this.connectedClients.length);
     this.server.emit(ActionTypes.ClientConnected, this.connectedClients);
     client.emit(ActionTypes.Data, this.data);
   }
@@ -31,9 +29,7 @@ export class AppGateway {
     this.connectedClients = this.connectedClients.filter(
       (connectedClient) => connectedClient !== client.id
     );
-    this.logger.log(
-      `Client disconnected: ${client.id} - ${this.connectedClients.length} connected clients.`
-    );
+    this.logger.disconnected(client.id, this.connectedClients.length);
     this.server.emit(ActionTypes.ClientConnected, this.connectedClients);
   }
 

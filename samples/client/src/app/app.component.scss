@@ -2,11 +2,37 @@
  * Remove template code below
  */
 :host {
-  display: block;
+  // display: flex;
+  // flex-direction: column;
+  // flex: 1;
   font-family: sans-serif;
-  min-width: 300px;
-  max-width: 600px;
-  margin: 50px auto;
+  min-width: 800px;
+  max-width: 1500px;
+  margin: 0px auto;
+}
+
+header {
+  background-color: #143055;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+section {
+  flex: 1;
+  nav {
+    padding: 10px;
+    display: flex;
+    background-color: #14305590;
+    justify-content: space-between;
+    a {
+      color: white;
+    }
+  }
+}
+footer {
+  p {
+    text-align: center;
+  }
 }
 
 .gutter-left {
@@ -21,17 +47,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-header {
-  background-color: #143055;
-  color: white;
-  padding: 5px;
-  border-radius: 3px;
-}
-
-main {
-  padding: 0 36px;
 }
 
 p {
