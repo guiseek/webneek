@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'rtc-data',
+  displayName: 'state-store',
   preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/packages/rtc/data',
+  coverageDirectory: '../../../coverage/packages/state/store',
 };

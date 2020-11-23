@@ -1,4 +1,4 @@
-import { Action, ActionTypes } from '@webneek/rtc-data';
+import { Action, ActionTypes } from '@nx-state/store';
 import { Observable, asyncScheduler } from 'rxjs';
 import { observeOn, filter, tap } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';

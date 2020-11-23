@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  div.shared {
+    flex: 1;
+    display: flex;
+    video {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  }
+}

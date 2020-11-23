@@ -12,15 +12,14 @@ import {
   Init,
   State,
   reducer,
-} from '@webneek/rtc-data';
+} from '@nx-state/store';
 
 import {
   getPatchValueEffect,
   getValuePatchedEffect,
   getFormChangesEffect,
 } from './effects';
-import { RtcSocketConfig } from './rtc-socket.config';
-import { RtcSocket } from './rtc-socket';
+import { WebSocketFacade } from '../shared/data';
 
 @Component({
   selector: 'wn-video',
@@ -53,7 +52,7 @@ export class VideoComponent implements OnInit {
     description: [''],
   });
 
-  constructor(private socket: RtcSocket, private fb: FormBuilder) {}
+  constructor(private socket: WebSocketFacade, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.socket.on(ActionTypes.ClientConnected, (payload: string[]) => {
