@@ -126,7 +126,7 @@ export class PeerConnectionComponent implements OnInit, OnDestroy {
         .then(() => {
           const message = { sdp: this.pc.localDescription };
           this.sendMessage(this.senderId, stringify(message));
-
+          this.remote.nativeElement.muted = true;
           this.callActive = true;
         });
     } catch (error) {
