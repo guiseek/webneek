@@ -1,22 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { WebAudioModule } from '@webneek/media';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { WebAudioModule } from '@webneek/media';
+
+import { webSocketConfig } from './../environments/environment';
+import { HelpdeskComponent } from './helpdesk/helpdesk.component';
+import { BannerComponent } from './shared/components/banner';
 import { AudioComponent } from './audio/audio.component';
 import { VideoComponent } from './video/video.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DataModule, WebSocketConfig } from './shared/data';
-import { HelpdeskComponent } from './helpdesk/helpdesk.component';
 import { HomeComponent } from './home/home.component';
-import { BannerComponent } from './shared/components/banner/banner.component';
+import { AppComponent } from './app.component';
+import { DataModule } from './shared/data';
 
-const config: WebSocketConfig = {
-  // url: 'http://localhost:3000',
-  url: 'https://webneek-server.herokuapp.com',
-  options: {},
-};
+const childrenDemos = () =>
+  import('./demos/demos.module').then((m) => m.DemosModule);
 
 @NgModule({
   declarations: [
@@ -31,14 +30,14 @@ const config: WebSocketConfig = {
     BrowserModule,
     WebAudioModule,
     ReactiveFormsModule,
-    DataModule.forRoot(config),
+    DataModule.forRoot(webSocketConfig),
     RouterModule.forRoot(
       [
         { path: '', component: HomeComponent },
         { path: 'audio', component: AudioComponent },
         { path: 'video', component: VideoComponent },
         { path: 'help', component: HelpdeskComponent },
-        // { path: '', redirectTo: 'help', pathMatch: 'full' }
+        { path: 'demos', loadChildren: childrenDemos },
       ],
       {
         initialNavigation: 'enabled',
