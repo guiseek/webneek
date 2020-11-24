@@ -1,1 +1,1 @@
-export * from './lib/ui-popover.module';
+export * from './lib/public-api';
