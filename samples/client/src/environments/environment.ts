@@ -13,6 +13,12 @@ export const webSocketConfig: WebSocketConfig = {
   options: {},
 };
 
+export const rtcConfiguration: RTCConfiguration = {
+  iceServers: [
+    { urls: 'stun:stun.services.mozilla.com' },
+    { urls: 'stun:stun.l.google.com:19302' },
+  ],
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

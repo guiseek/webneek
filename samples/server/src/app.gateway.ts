@@ -1,10 +1,10 @@
-import { WebneekLogger } from './utils/webneek-logger';
 import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { WebneekLogger } from './utils/webneek-logger';
 import { ActionTypes, FormData } from '@nx-state/store';
 
 @WebSocketGateway()
@@ -16,7 +16,7 @@ export class AppGateway {
   @WebSocketServer()
   server: Server;
 
-  private logger: WebneekLogger = new WebneekLogger('EventsGateway');
+  private logger: WebneekLogger = new WebneekLogger('WebneekGateway');
 
   handleConnection(client: Socket) {
     this.connectedClients = [...this.connectedClients, client.id];
