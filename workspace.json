@@ -272,12 +272,54 @@
           }
         }
       }
+    },
+    "ui-popover": {
+      "projectType": "library",
+      "root": "packages/ui/popover",
+      "sourceRoot": "packages/ui/popover/src",
+      "prefix": "wn",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ui/popover/tsconfig.lib.json",
+            "project": "packages/ui/popover/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ui/popover/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "packages/ui/popover/tsconfig.lib.json",
+              "packages/ui/popover/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!packages/ui/popover/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/ui/popover/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "server",
+  "defaultProject": "client",
   "schematics": {
     "@nrwl/angular:application": {
       "unitTestRunner": "jest",

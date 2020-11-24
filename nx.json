@@ -41,6 +41,9 @@
     },
     "state-store": {
       "tags": []
+    },
+    "ui-popover": {
+      "tags": ["side:client", "type:ui"]
     }
   },
   "workspaceLayout": {

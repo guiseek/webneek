@@ -1,9 +1,11 @@
 button {
-  margin: 0 20px 20px 0;
+  // margin: 0 20px 20px 0;
   vertical-align: top;
   width: 155px;
 }
 div#buttons {
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #eee;
   margin: 1em 0 1em 0;
   padding: 0 0 1em 0;
@@ -17,7 +19,8 @@ div#preview {
   padding: 0 0 0.5em 0;
 }
 div#preview > div {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   vertical-align: top;
   width: calc(50% - 12px);
 }
@@ -25,7 +28,9 @@ div#select {
   margin: 0 0 1em 0;
 }
 div#selectSource {
-  margin: 0 0 1em 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0 1em 0;
 }
 div.source {
   display: inline-block;

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { WebAudioModule } from '@webneek/media';
-
+import { UiPopoverModule } from '@webneek/ui-popover';
 import { webSocketConfig } from './../environments/environment';
 import { HelpdeskComponent } from './helpdesk/helpdesk.component';
 import { BannerComponent } from './shared/components/banner';
@@ -29,6 +29,7 @@ const childrenDemos = () =>
   imports: [
     BrowserModule,
     WebAudioModule,
+    UiPopoverModule,
     ReactiveFormsModule,
     DataModule.forRoot(webSocketConfig),
     RouterModule.forRoot(

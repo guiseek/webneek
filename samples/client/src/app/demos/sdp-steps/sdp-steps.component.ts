@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import {
   AfterViewInit,
   Component,
@@ -81,8 +82,6 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     offerToReceiveVideo: true,
   };
 
-  constructor() {}
-
   async ngOnInit() {
     try {
       const enumerateDevices = await navigator.mediaDevices.enumerateDevices();
@@ -143,7 +142,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
         }
         this.videoSelect.appendChild(option);
       } else {
-        console.log('unknown', JSON.stringify(sourceInfos[i]));
+        console.log('desconhecido', JSON.stringify(sourceInfos[i]));
       }
     }
   }
@@ -157,9 +156,9 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
       this.localStream.getTracks().forEach((track) => track.stop());
     }
     const audioSource = this.audioSelect.value;
-    console.log(`Selected audio source: ${audioSource}`);
+    console.log(`Fonte de áudio selecionada: ${audioSource}`);
     const videoSource = this.videoSelect.value;
-    console.log(`Selected video source: ${videoSource}`);
+    console.log(`Fonte de vídeo selecionada: ${videoSource}`);
 
     const constraints: MediaStreamConstraints = {
       audio: {
@@ -177,7 +176,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
         ],
       },
     } as MediaStreamConstraints;
-    console.log('Requested local stream');
+    console.log('Solicitou fluxo local');
     try {
       const userMedia = await navigator.mediaDevices.getUserMedia(constraints);
       this.gotStream(userMedia);
@@ -187,7 +186,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
   }
 
   gotStream(stream: MediaStream) {
-    console.log('Received local stream');
+    console.log('Fluxo local recebido');
     this.localVideo.srcObject = stream;
     this.localStream = stream;
   }
@@ -199,23 +198,25 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     this.setOfferButton.disabled = false;
     this.setAnswerButton.disabled = false;
     this.hangupButton.disabled = false;
-    console.log('Starting call');
+    console.log('Chamada inicial');
     const videoTracks = this.localStream.getVideoTracks();
     const audioTracks = this.localStream.getAudioTracks();
 
     if (videoTracks.length > 0) {
-      console.log(`Using video device: ${videoTracks[0].label}`);
+      console.log(`Usando dispositivo de vídeo: ${videoTracks[0].label}`);
     }
 
     if (audioTracks.length > 0) {
-      console.log(`Using audio device: ${audioTracks[0].label}`);
+      console.log(`Usando dispositivo de áudio: ${audioTracks[0].label}`);
     }
     const servers = null;
 
     this.localPeerConnection = this.localPeerConnection = new RTCPeerConnection(
       servers
     );
-    console.log('Created local peer connection object localPeerConnection');
+    console.log(
+      'Objeto de conexão ponto a ponto local criado localPeerConnection'
+    );
     this.localPeerConnection.onicecandidate = (e) =>
       this.onIceCandidate(this.localPeerConnection, e);
     this.sendChannel = this.localPeerConnection.createDataChannel(
@@ -229,7 +230,9 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     this.remotePeerConnection = this.remotePeerConnection = new RTCPeerConnection(
       servers
     );
-    console.log('Created remote peer connection object remotePeerConnection');
+    console.log(
+      'Criado objeto de conexão de ponto remoto remotePeerConnection'
+    );
     this.remotePeerConnection.onicecandidate = (e) =>
       this.onIceCandidate(this.remotePeerConnection, e);
     this.remotePeerConnection.ontrack = this.gotRemoteStream;
@@ -240,13 +243,13 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
       .forEach((track) =>
         this.localPeerConnection.addTrack(track, this.localStream)
       );
-    console.log('Adding Local Stream to peer connection');
+    console.log('Adicionando stream local à conexão de par');
   }
   onSetSessionDescriptionSuccess() {
-    console.log('Set session description success.');
+    console.log('Definir o sucesso da descrição da sessão.');
   }
   onSetSessionDescriptionError(error) {
-    console.log(`Failed to set session description: ${error.toString()}`);
+    console.log(`Falha ao definir a descrição da sessão: ${error.toString()}`);
   }
   async createOffer() {
     try {
@@ -259,13 +262,13 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     }
   }
   onCreateSessionDescriptionError(error) {
-    console.log(`Failed to create session description: ${error.toString()}`);
+    console.log(`Falha ao criar a descrição da sessão: ${error.toString()}`);
   }
 
   async setOffer() {
-    // Restore the SDP from the textarea. Ensure we use CRLF which is what is generated
-    // even though https://tools.ietf.org/html/rfc4566#section-5 requires
-    // parsers to handle both LF and CRLF.
+    // Restaura o SDP da textarea. Certifique-se de usar CRLF, que é o que é gerado
+    // embora https://tools.ietf.org/html/rfc4566#section-5 requeira
+    // analisadores para lidar com LF e CRLF.
     const sdp = this.offerSdpTextarea.value
       .split('\n')
       .map((l) => l.trim())
@@ -274,7 +277,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
       type: 'offer',
       sdp: sdp,
     };
-    console.log(`Modified Offer from localPeerConnection\n${sdp}`);
+    console.log(`Oferta modificada de localPeerConnection\n${sdp}`);
 
     try {
       await this.localPeerConnection.setLocalDescription(offer);
@@ -295,9 +298,9 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     this.offerSdpTextarea.value = description.sdp;
   }
   async createAnswer() {
-    // Since the 'remote' side has no media stream we need
-    // to pass in the right constraints in order for it to
-    // accept the incoming offer of audio and video.
+    // Como o lado 'remoto' não tem fluxo de mídia, precisamos
+    // para passar as restrições corretas para que
+    // aceite a oferta de áudio e vídeo.
     try {
       const answer = await this.remotePeerConnection.createAnswer();
       this.gotDescription2(answer);
@@ -307,9 +310,9 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
   }
 
   async setAnswer() {
-    // Restore the SDP from the textarea. Ensure we use CRLF which is what is generated
-    // even though https://tools.ietf.org/html/rfc4566#section-5 requires
-    // parsers to handle both LF and CRLF.
+    // Restaura o SDP da textarea. Certifique-se de usar CRLF, que é o que é gerado
+    // embora https://tools.ietf.org/html/rfc4566#section-5 requeira
+    // analisadores para lidar com LF e CRLF.
     const sdp = this.answerSdpTextarea.value
       .split('\n')
       .map((l) => l.trim())
@@ -326,7 +329,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
       this.onSetSessionDescriptionError(e);
     }
 
-    console.log(`Modified Answer from remotePeerConnection\n${sdp}`);
+    console.log(`Resposta modificada de remotePeerConnection\n${sdp}`);
     try {
       await this.localPeerConnection.setRemoteDescription(answer);
       this.onSetSessionDescriptionSuccess();
@@ -342,14 +345,16 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
   sendData() {
     if (this.sendChannel.readyState === 'open') {
       this.sendChannel.send(`${this.dataChannelCounter}`);
-      console.log(`DataChannel send counter: ${this.dataChannelCounter}`);
+      console.log(
+        `Contador de envio de DataChannel: ${this.dataChannelCounter}`
+      );
       this.dataChannelCounter++;
     }
   }
 
   hangup() {
     this.remoteVideo.srcObject = null;
-    console.log('Ending call');
+    console.log('Terminando chamada');
     this.localStream.getTracks().forEach((track) => track.stop());
     this.sendChannel.close();
     if (this.receiveChannel) {
@@ -378,7 +383,7 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     }
     if (this.remoteVideo.srcObject !== e.streams[0]) {
       this.remoteVideo.srcObject = e.streams[0];
-      console.log('Received remote stream');
+      console.log('Fluxo remoto recebido');
     }
   };
 
@@ -406,21 +411,21 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
     }
 
     console.log(
-      `${this.getName(pc)} ICE candidate:\n${
+      `${this.getName(pc)} Candidato ICE:\n${
         event.candidate ? event.candidate.candidate : '(null)'
       }`
     );
   };
 
   onAddIceCandidateSuccess(pc: RTCPeerConnection) {
-    console.log('AddIceCandidate success.');
+    console.log('IceCandidate adicionado com sucesso.');
   }
   onAddIceCandidateError(pc: RTCPeerConnection, error?: unknown) {
-    console.log(`Failed to add Ice Candidate: ${error.toString()}`);
+    console.log(`Falha ao adicionar IceCandidate: ${error.toString()}`);
   }
 
   receiveChannelCallback = (event: RTCDataChannelEvent) => {
-    console.log('Receive Channel Callback');
+    console.log('Receber retorno de chamada do canal');
     this.receiveChannel = event.channel;
     this.receiveChannel.onmessage = this.onReceiveMessageCallback;
     this.receiveChannel.onopen = this.onReceiveChannelStateChange;
@@ -429,12 +434,14 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
 
   onReceiveMessageCallback = (event: MessageEvent) => {
     this.dataChannelDataReceived = event.data;
-    console.log(`DataChannel receive counter: ${this.dataChannelDataReceived}`);
+    console.log(
+      `Contador de recebimento DataChannel: ${this.dataChannelDataReceived}`
+    );
   };
 
   onSendChannelStateChange = () => {
     const readyState = this.sendChannel.readyState;
-    console.log(`Send channel state is: ${readyState}`);
+    console.log(`O estado do canal de envio é: ${readyState}`);
     if (readyState === 'open') {
       this.sendDataLoop = setInterval(this.sendData, 1000);
     } else {
@@ -443,6 +450,6 @@ export class SdpStepsComponent implements OnInit, AfterViewInit {
   };
   onReceiveChannelStateChange = () => {
     const readyState = this.receiveChannel.readyState;
-    console.log(`Receive channel state is: ${readyState}`);
+    console.log(`O estado do canal de recepção é: ${readyState}`);
   };
 }

@@ -2,10 +2,6 @@
  * Remove template code below
  */
 :host {
-  // display: flex;
-  // flex-direction: column;
-  // flex: 1;
-  font-family: sans-serif;
   min-width: 800px;
   max-width: 1500px;
   margin: 0px auto;
@@ -17,17 +13,17 @@ header {
   padding: 5px;
   border-radius: 3px;
 }
+nav {
+  padding: 10px;
+  display: flex;
+  background-color: #14305590;
+  justify-content: space-between;
+  a {
+    color: white;
+  }
+}
 section {
   flex: 1;
-  nav {
-    padding: 10px;
-    display: flex;
-    background-color: #14305590;
-    justify-content: space-between;
-    a {
-      color: white;
-    }
-  }
 }
 footer {
   p {
