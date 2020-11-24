@@ -1,0 +1,40 @@
+<div #selectSource id="selectSource" class="hidden">
+  <div id="select">
+    Select an audio &amp; video source, then click <strong>Get media</strong>:
+  </div>
+  <div class="source">
+    <label for="audioSrc">Audio source:</label>
+    <select #audioSrc id="audioSrc"></select>
+  </div>
+  <div class="source">
+    <label for="videoSrc">Video source:</label>
+    <select #videoSrc id="videoSrc"></select>
+  </div>
+</div>
+
+<div id="buttons">
+  <button #getMediaButtonRefButton id="getMedia" (click)="getMedia()">Get media</button>
+  <button #createPeerConnectionRefButton id="createPeerConnection" disabled (click)="createPeerConnection()">Create peer connection</button>
+  <button #createOfferRefButton id="createOffer" disabled (click)="createOffer()">Create offer</button>
+  <button #setOfferRefButton id="setOffer" disabled (click)="setOffer()">Set offer</button>
+  <button #createAnswerRefButton id="createAnswer" disabled (click)="createAnswer()">Create answer</button>
+  <button #setAnswerRefButton id="setAnswer" disabled (click)="setAnswer()">Set answer</button>
+  <button #hangupRefButton id="hangup" disabled (click)="hangup()">Hang up</button>
+</div>
+
+<div id="preview">
+  <div id="local">
+    <h2>Local</h2>
+    <video #localVideoRefEl playsinline autoplay muted></video>
+    <h2>Offer SDP</h2>
+    <textarea #localTextarea></textarea>
+    <br />
+    <br />
+  </div>
+  <div id="remote">
+    <h2>Remote</h2>
+    <video #remoteVideoRefEl playsinline autoplay></video>
+    <h2>Answer SDP</h2>
+    <textarea #remoteTextarea></textarea>
+  </div>
+</div>

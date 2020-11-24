@@ -90,7 +90,8 @@
 }
 .cls-12,
 .cls-13,
-.cls-14 {
+.cls-14,
+.bindings {
   stroke-dasharray: 100;
   animation: dash 25s linear infinite;
 }
@@ -106,8 +107,9 @@ svg {
   #Free {
     opacity: 0;
   }
-  #Players #Free {
-    transition: opacity 500ms ease-in-out;
+  #Players,
+  #Free {
+    transition: opacity 3000ms ease-in-out;
   }
 }
 svg .new-world {
