@@ -36,6 +36,7 @@ module.exports = {
     { name: 'server', description: 'anything server specific' },
     { name: 'client', description: 'anything client specific' },
     { name: 'media', description: 'anything media specific' },
+    { name: 'ui-popover', description: 'anything ui-popover specific' },
     {
       name: 'test',
       description: 'anything test specific (e.g., jest, cypress)',

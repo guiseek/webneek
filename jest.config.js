@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/packages/media',
     '<rootDir>/packages/rtc/data',
     '<rootDir>/packages/server/core',
+    '<rootDir>/packages/ui/popover',
   ],
 };

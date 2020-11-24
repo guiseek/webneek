@@ -7,6 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'Fundação de livre comunicação Communication Foundation';
+  title = 'Fundação de livre comunicação';
   // title = 'Free Communication Foundation';
 }

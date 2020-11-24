@@ -1,4 +1,4 @@
-<p>audio works!</p>
+<p [wnPopoverOpen]="tmpl">audio works!</p>
 
 <div class="track">
   <canvas #fallbackOzzy="AudioNode" #canvasOzzy wnAudioDestinationNode></canvas>
@@ -45,3 +45,7 @@
     </ng-container>
   </audio>
 </div>
+
+<ng-template #tmpl>
+  <p>Hello</p>
+</ng-template>
